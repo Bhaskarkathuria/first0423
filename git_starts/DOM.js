@@ -1,8 +1,30 @@
+const itemlist=document.querySelector("#items")
+
+console.log(itemlist.parentElement)
+console.log(itemlist.lastElementChild)
+console.log(itemlist.lastChild)
+console.log(itemlist.lastChild)
+
+const newchild=document.createElement('div')
+
+newdiv.className='hello'
+newdiv.id='hello1'
+
+console.log(itemlist.firstElementChild)
+console.log(itemlist.firstChild)
+console.log(itemlist.nextSibling)
+console.log(itemlist.nextElementSibling)
+console.log(itemlist.previousSibling)
+console.log(itemlist.previousElementSibling)
+console.log(itemlist.previousElementSibling)
 
 
-const variable=document.querySelectorAll('.list-group-item')
+const newchild=document.createElement('div')
 
-variable[1].style.backgroundColor='green'
+newdiv.className='hello'
+newdiv.id='hello1'
 
-variable[2].style.display='none'
+newdiv.setAttribute('title','Hello div')
+newdiv.appendChild(newDivText);
 
+console.log(newdiv)
