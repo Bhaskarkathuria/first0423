@@ -1,7 +1,8 @@
-const header=document.getElementById('header-title');
+const item =document.getElementsByClassName("list-group-item");
 
-header.style.border= "solid 3px #000"
+item[2].style.backgroundColor="green"
 
-const header2=document.getElementById("main").getElementsByClassName("title")[0]
+for(i=0;i<item.length;i++){
 
-header2.style.color="green"
+    item[i].style.fontWeight="bold"
+}
