@@ -1,30 +1,67 @@
-const itemlist=document.querySelector("#items")
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
 
-console.log(itemlist.parentElement)
-console.log(itemlist.lastElementChild)
-console.log(itemlist.lastChild)
-console.log(itemlist.lastChild)
+// Form submit event
+form.addEventListener('submit', addItem);
+// Delete event
+itemList.addEventListener('click', removeItem);
+// Filter event
+filter.addEventListener('keyup', filterItems);
 
-const newchild=document.createElement('div')
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-newdiv.className='hello'
-newdiv.id='hello1'
+  // Get input value
+  var newItem = document.getElementById('item').value;
 
-console.log(itemlist.firstElementChild)
-console.log(itemlist.firstChild)
-console.log(itemlist.nextSibling)
-console.log(itemlist.nextElementSibling)
-console.log(itemlist.previousSibling)
-console.log(itemlist.previousElementSibling)
-console.log(itemlist.previousElementSibling)
+  // Create new li element
+  var li = document.createElement('li');
+  // Add class
+  li.className = 'list-group-item';
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
 
+  // Create del button element
+  var deleteBtn = document.createElement('button');
 
-const newchild=document.createElement('div')
+  // Add classes to del button
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-newdiv.className='hello'
-newdiv.id='hello1'
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode('X'));
 
-newdiv.setAttribute('title','Hello div')
-newdiv.appendChild(newDivText);
+  // Append button to li
+  li.appendChild(deleteBtn);
 
-console.log(newdiv)
+  // Append li to list
+  itemList.appendChild(li);
+}
+
+// Remove item
+function removeItem(e){
+  if(e.target.classList.contains('delete')){
+    if(confirm('Are You Sure?')){
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
+}
+
+// Filter Items
+function filterItems(e){
+  // convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  // Get lis
+  var items = itemList.getElementsByTagName('li');
+  // Convert to an array
+  Array.from(items).forEach(function(item){
+    var itemName = item.firstChild.textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
